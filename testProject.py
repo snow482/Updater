@@ -3,13 +3,17 @@ import zipfile
 import shutil
 import requests
 
-myFile = open("file.txt", "w")
+'''myFile = open("file.txt", "w")
 myFile.write("madmefed")
-myFile.close()
+myFile.close()'''
 
 print(os.getcwd())
 
-#shutil.copyfile("./file.txt", "./file1.txt") - копирование файла (./ - текущая дирректория)
+#copyfile("./file.txt", "./file2.txt") #- копирование файла (./ - текущая дирректория)
+#os.remove('./file1.txt') - удалиение файла
+#os.makedirs('dir2') #- удаление дирректории
+path = 'C:/git/Updater/dir2'
+os.removedirs(path) #- удаление дирректории
 
 #создаем zip файл
 #with zipfile.ZipFile('files1.zip', 'w', compression=zipfile.ZIP_DEFLATED) as myZipFile:   # сжимаем файл в zip с именем "files1.zip", флаг "w (запись)", тип сжатия, 
@@ -31,9 +35,9 @@ print(os.getcwd())
 
 #r = requests.get('https://dungeon.su/gallery/articles/78_7_1522772236.jpg')
 
-a = requests.get('https://www.python.org/ftp/python/3.9.4/python-3.9.4-amd64.exe')
-with open('dwarf.exe', 'wb') as i:
-    i.write(a.content)
+#a = requests.get('https://www.python.org/ftp/python/3.9.4/python-3.9.4-amd64.exe').content
+#with open('dwarf.exe', 'wb') as i:
+#    i.write(a.content)
 #with open('pyzip1.zip', 'wb') as z:
 #    z.write(a.content)
 
