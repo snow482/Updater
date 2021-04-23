@@ -10,7 +10,7 @@ myFile.close()'''
 print(os.getcwd())
 
 #copyfile("./file.txt", "./file2.txt") #- копирование файла (./ - текущая дирректория)
-#os.remove('./file1.txt') - удалиение файла
+#os.remove('./file1.txt') - удаление файла
 #os.makedirs('dir2') #- удаление дирректории
 path = 'C:/git/Updater/dir2'
 os.removedirs(path) #- удаление дирректории

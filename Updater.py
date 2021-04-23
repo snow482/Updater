@@ -1,4 +1,4 @@
-import os
+import os, sys
 import glob
 import shutil
 import psutil
@@ -7,39 +7,6 @@ import zipfile
 import requests
 import hmac
 import hashlib 
-
-# уточнение текущей дирректории
-print(os.getcwd())
-
-# чек версии программы
-def versionCheck():
-    fileForHash = hashlib.md5()
-    with open('TrajectoryConverter.exe', 'rb') as fileType: 
-        buf = fileType.read()
-        fileForHash.update(buf)
-        checkSum = str(fileForHash.hexdigest())
-    print(checkSum)
-
-#versionCheck()
-
-# поиск файлов с расширением .exe, добавление в массив и поиск в массеве конкретного
-def findFiles():
-    name = "DiscordSetup.exe"
-    neededFile = []
-    os.chdir(r'c:\users\snow-pc\downloads')
-    for file in glob.glob("*.exe"):
-        neededFile.append(file)
-    if name in neededFile:
-        print("yes")
-
-#findFiles()
-
-def fileRun(fileType):
-    #cmd = "DiscordSetup.exe"
-    os.chdir(r'c:\users\snow-pc\downloads')
-    os.system(fileType)
-
-fileRun('200115300109_488395.jpg')
 
 # GET/POST запросы
 def myjson(): 
@@ -61,20 +28,78 @@ def myjson_1():
 #myjson_1()
 
 
+# поиск файлов с расширением .exe, добавление в массив и поиск в массеве конкретного
+def findFile():
+    name = "App.exe"
+    neededFile = []
+    os.chdir(r'c:\users\snow-pc\downloads')
+    for file in glob.glob("*.exe"):
+        neededFile.append(file)
+    if name in neededFile:
+        print("yes")
 
-# убитие процессов
+#findFile()
+
+
+# GET запрос по ссылке на скачку архива по URL
+def saveFileFromServer():
+a = requests.get('https://dungeon.su/gallery/articles/78_7_1522772236.jpg').content
+with open('testFile.zip', 'wb') as i:
+    i.write(a.content)
+
+
+# чек версии программы
+def versionCheck():
+    fileForHash = hashlib.md5()
+    with open('TrajectoryConverter.exe', 'rb') as fileType: 
+        buf = fileType.read()
+        fileForHash.update(buf)
+        checkSum = str(fileForHash.hexdigest())
+    print(checkSum)
+
+#versionCheck()
+
+
+# распакует архив в папку с именем 'Tempfolder'
+def fileExtraction():
+    path = 'C:/git/Updater/'
+    os.system(path)
+    with zipfile.ZipFile('file.zip', 'r') as myZipFile:
+        myZipFile.extractall('TempFolder')                      
+
+
+
+
+
+
+# убить старую СКАДУ
 def processKilling(): 
     for processName in psutil.process_iter():
-        if processName.name() == "explorer.exe":
+        if processName.name() == "App.exe":
             os.system("taskkill /PID " + str(processName.pid) + " /F")
 
 #processKilling()
 
-def build_libs(Nthreads,LibCfg):  # Nthreads is int,LibCfg as string
-      
 
-if __name__=='__main__':
-    numthreads = sys.argv[1] # first argument to script - 4
-    libconfig = sys.argv[2] # second argument
-    # call build_libs however you planned
-    build_libs(numthreads, libconfig)
+# архивировать работавшую СКАДУ
+def fileArchivation():
+    with zipfile.ZipFile('BackupScada.zip', 'w', compression=zipfile.ZIP_DEFLATED) as myZipFile: 
+        myZipFile.write('App.exe')                         # добавляем в архив первый файл
+
+
+# удалить прошлый EXE файл
+os.remove('./App.exe') #удаление файла в текущей папке
+
+
+# запустить новый EXE с аргументами
+def fileRun():
+    os.chdir(r'C:\git\proxygnss\cmake-build-debug\App')
+    path = 'start' + ' ' + 'App.exe' + ' ' + 'span6' + ' ' + '20000'
+    os.system(path)
+
+#fileRun()
+
+
+
+
+
