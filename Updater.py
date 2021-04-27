@@ -1,3 +1,5 @@
+#назначить интерпретатор???
+
 import os, sys
 import glob
 import shutil
@@ -8,7 +10,7 @@ import requests
 import hmac
 import hashlib 
 
-# GET/POST запросы
+# GET запросы
 def myjson(): 
     responce = requests.get('https://httpbin.org/get', params={'a':'b'})
 
@@ -19,6 +21,8 @@ def myjson():
 
 #myjson()
 
+
+# POST запросы
 def myjson_1():
     r = requests.post('https://httpbin.org/post', params={'key':'value'}, json={'username':'melou'})
     with open('log.json', 'w') as log:
@@ -43,21 +47,25 @@ def findFile():
 
 # GET запрос по ссылке на скачку архива по URL
 def saveFileFromServer():
-a = requests.get('https://dungeon.su/gallery/articles/78_7_1522772236.jpg').content
-with open('testFile.zip', 'wb') as i:
-    i.write(a.content)
+    a = requests.get('https://dungeon.su/gallery/articles/78_7_1522772236.jpg').content
+    with open('testFile.zip', 'wb') as i:
+        i.write(a.content)
 
 
 # чек версии программы
 def versionCheck():
     fileForHash = hashlib.md5()
-    with open('TrajectoryConverter.exe', 'rb') as fileType: 
+    with open('dwarf1.png', 'rb') as fileType: 
         buf = fileType.read()
         fileForHash.update(buf)
         checkSum = str(fileForHash.hexdigest())
+    #return checkSum
     print(checkSum)
 
-#versionCheck()
+versionCheck()
+
+# берем hash с json и с функции versionCheck() и сравниваем их
+# если ок, то значит все скачалось, идем дальше, если нет, попробовать сначала???
 
 
 # распакует архив в папку с именем 'Tempfolder'
@@ -66,10 +74,6 @@ def fileExtraction():
     os.system(path)
     with zipfile.ZipFile('file.zip', 'r') as myZipFile:
         myZipFile.extractall('TempFolder')                      
-
-
-
-
 
 
 # убить старую СКАДУ
@@ -88,7 +92,7 @@ def fileArchivation():
 
 
 # удалить прошлый EXE файл
-os.remove('./App.exe') #удаление файла в текущей папке
+#os.remove('./App.exe') #удаление файла в текущей папке
 
 
 # запустить новый EXE с аргументами
@@ -97,9 +101,10 @@ def fileRun():
     path = 'start' + ' ' + 'App.exe' + ' ' + 'span6' + ' ' + '20000'
     os.system(path)
 
-#fileRun()
+fileRun()
 
-
+#удаление временной папки
+#os.rmdir('./TempFolder')
 
 
 
