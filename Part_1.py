@@ -60,7 +60,7 @@ print(fileHash)
 
 # распакует архив в папку с именем 'Tempfolder'
 def fileExtraction():
-    path = 'cd' + ' ' + 'c:\\gitt\\Updater'
+    path = 'cd' + ' ' + 'c:\\git\\Updater'
     os.system(path)
     with zipfile.ZipFile('test.zip', 'r') as myZipFile:
         myZipFile.extractall('TempFolder')
@@ -68,7 +68,7 @@ def fileExtraction():
 fileExtraction()
 
 def imageRun():
-    os.chdir(r'C:\\gitt\\Updater')
+    os.chdir(r'C:\\git\\Updater')
     path = 'start' + ' ' + 'mspaint.exe' + ' ' + 'image.png'
     os.system(path)
 imageRun()
