@@ -71,8 +71,11 @@ def imageRun():
     os.chdir(r'C:\\git\\Updater')
     path = 'start' + ' ' + 'mspaint.exe' + ' ' + 'image.png'
     os.system(path)
+    
 imageRun()
+
 time.sleep(4)
+
 # убить старую СКАДУ
 def processKilling(): 
     for processName in psutil.process_iter():
